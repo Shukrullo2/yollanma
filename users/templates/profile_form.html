@@ -1,0 +1,43 @@
+{% extends 'main.html'%}
+{% block content %}
+
+<main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'account' %}"><i class="fa fa-chevron-left"></i></a>
+                <br>
+
+
+
+                <form class="form" action=" {% url 'edit-account' %} " method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                   {%for field in form%}
+                    <div class="form__field">
+                        {% if request.user.profile.user_type == 'company' and field.label == 'Bio'%}
+                         <label for="formInput#text">About Company </label>
+                            {{field}}
+                        {%elif request.user.profile.user_type == 'company' and field.label == 'Name'%}
+
+                         <label for="formInput#text">Company Name</label>
+                            {{field}}
+
+
+                        {%else%}
+                        <label for="formInput#text">{{field.label}} </label>
+                      {{field}}
+                        {%endif%}
+                    </div>
+                    {% endfor %}
+
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock content%}
