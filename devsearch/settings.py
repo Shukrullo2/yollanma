@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-^e9k4)^ix$_!4)i8o(ifq&suu+-hnhsk92eeo(t1=1or@6*q-@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['freelancebazar-production.up.railway.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -90,6 +90,7 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+<<<<<<< HEAD
 
 # DATABASES = {
 #     'default': {
@@ -119,6 +120,29 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+=======
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':  'devsearch',
+#         'USER': 'postgres',
+#         'PASSWORD': '0000',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+
+DATABASES = {
+    'default': {
+        dj_database_url.config(
+        conn_max_age=500,
+        conn_health_checks=True,
+    )
+    }
+}
+
+>>>>>>> 981676e53d9f2d34f75e0c485381a836695aa844
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
