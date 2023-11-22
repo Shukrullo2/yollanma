@@ -23,6 +23,7 @@ img {
   width: 95%;
   max-width: 85rem;
   margin: 0 auto;
+
 }
 
 /*=======================
@@ -31,7 +32,7 @@ img {
 .header {
   position: sticky;
   z-index: 111;
-  background-color: var(--color-sub);
+  background-color: white;
   padding: 1.5rem 0;
 }
 
@@ -42,18 +43,21 @@ img {
 }
 
 .header__logo > img {
-  height: 3.8rem;
+  width: auto;
+  height: 70px; /* Maintain the aspect ratio of the image */
+  display: block; /* Remove any extra spacing below the image */
+  margin: 0 auto;
 }
 
 .header__nav > ul {
   display: inline-flex;
   align-items: center;
   list-style: none;
-  gap: 6.5rem;
+  gap: 3rem;
 }
 
 .header__menuItem > a {
-  color: var(--color-light);
+  color: #101c34;
   font-weight: 300;
 }
 
@@ -156,12 +160,13 @@ img {
   .header__menuItem a {
     transition: all 0.5s ease-in-out;
     padding: 1rem 3rem;
+    background: var(--color-light);
   }
 
   .header__menuItem a:hover {
     padding: 1rem 3rem;
     border-radius: 3px;
-    background: var(--color-sub-light);
+    background: var(--color-light);
   }
 }
 
@@ -173,7 +178,7 @@ img {
   height: 40vh;
   display: flex;
   align-items: center;
-  background-color: var(--color-sub);
+  background-color: #101c34;
 }
 
 .hero-section__box {
@@ -486,7 +491,7 @@ img {
   Projects Page
 ========================*/
 .projects > .hero-section {
-  background: var(--color-sub-lighter);
+  background: #ffc404;
   height: 30vh;
 }
 
@@ -745,18 +750,8 @@ img {
 }
 
 .message {
-
+  background: var(--color-white);
   padding: 2.5rem 0;
-
-}
-
-.custom{
-  background-color: green;
-}
-
-.my--message {
-  background-color: #8b8b8b;
-
 }
 
 .message > a span {
@@ -767,6 +762,7 @@ img {
 .message.message--unread a span {
   font-weight: 700;
   color: var(--color-sub);
+
 }
 
 .message:not(:last-child) {
@@ -801,6 +797,20 @@ img {
   padding: 3.5rem 5rem;
   border: 2px solid var(--color-light);
   border-radius: 0.7rem;
+
+
+
+}
+
+
+.messagePage .my-message {
+  list-style: none;
+  background: var(--color-white);
+  padding: 3.5rem 5rem;
+  border: 2px solid var(--color-light);
+  border-radius: 0.7rem;
+  text-align: right;
+
 }
 
 .messagePage .message__subject {
@@ -819,6 +829,12 @@ img {
   font-size: 1.4rem;
   font-weight: 400;
   text-align: left;
+  margin-bottom: 3rem;
+}
+.messagePage .message_date{
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-align: right;
   margin-bottom: 3rem;
 }
 

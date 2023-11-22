@@ -1,15 +1,15 @@
 :root {
   --color-main: #5aa5b9;
   --color-main-light: #e6faff;
-  --color-sub: #3f4156;
-  --color-sub-light: #51546e;
+  --color-sub: #101c34;
+  --color-sub-light: #233560;
   --color-sub-lighter: #ededfd;
   --color-text: #737373;
   --color-gray: #8b8b8b;
   --color-light: #e5e7eb;
   --color-light-gray: #767676;
   --color-bg: #f8fafd;
-  --color-white: #fdfdff;
+  --color-white: #fffefd;
   --color-white-light: #f3f3f3;
   --color-success: #359e64;
   --color-success-bg: #def8e8;

@@ -1,7 +1,7 @@
 .alert {
-  display: inline-flex;
+  display: flex;
   gap: 3rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1.5rem 2.5rem;
   border-radius: 3px;
