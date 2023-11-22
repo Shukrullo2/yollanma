@@ -61,9 +61,7 @@ img {
   font-weight: 300;
 }
 
-.header__menuItem > a > #log-button {
-  color: white;
-}
+
 
 .toggle-menu > span {
   display: none;
