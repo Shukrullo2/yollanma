@@ -32,7 +32,7 @@ img {
 .header {
   position: sticky;
   z-index: 111;
-  background-color: white;
+  background-color: var(--color-light);
   padding: 1.5rem 0;
 }
 
@@ -57,8 +57,12 @@ img {
 }
 
 .header__menuItem > a {
-  color: white;
+  color: var(--color-sub);
   font-weight: 300;
+}
+
+.header__menuItem > #log-button {
+  color: white;
 }
 
 .toggle-menu > span {
