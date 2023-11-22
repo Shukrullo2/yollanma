@@ -40,6 +40,7 @@ def createProject(request):
     if request.method == 'POST':
         newtags = request.POST.get('newtags').replace(',', ' ').split()
         if form.is_valid():
+            form = ProjectForm(request.POST, request.FILES)
             project = form.save(commit=False)
             project.owner = profile
             project.save()
