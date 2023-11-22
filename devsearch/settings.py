@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 import dj_database_url
+
 
 
 
@@ -29,7 +31,7 @@ SECRET_KEY = 'django-insecure-^e9k4)^ix$_!4)i8o(ifq&suu+-hnhsk92eeo(t1=1or@6*q-@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['freelancebazar-production.up.railway.app', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,7 +92,7 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-<<<<<<< HEAD
+
 
 # DATABASES = {
 #     'default': {
@@ -120,7 +122,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-=======
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -133,16 +135,16 @@ DATABASES = {
 # }
 
 
-DATABASES = {
-    'default': {
-        dj_database_url.config(
-        conn_max_age=500,
-        conn_health_checks=True,
-    )
-    }
-}
+# DATABASES = {
+#     'default': {
+#         dj_database_url.config(
+#         conn_max_age=500,
+#         conn_health_checks=True,
+#     )
+#     }
+# }
 
->>>>>>> 981676e53d9f2d34f75e0c485381a836695aa844
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -197,6 +199,7 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+django_heroku.settings(locals())
 STORAGES = {
     # ...
     "staticfiles": {
