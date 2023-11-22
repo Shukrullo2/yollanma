@@ -61,7 +61,7 @@ img {
   font-weight: 300;
 }
 
- #log-button {
+.header__menuItem > a > #log-button {
   color: white;
 }
 
