@@ -91,30 +91,34 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'devsearch',
-        'USER': 'postgres',
-        'PASSWORD': '0000',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=500,
-        conn_health_checks=True,
-    )
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':  'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'GfCEFdebCcdFdABF-BGCEgAb5*2*Bece',
+#         'HOST': 'viaduct.proxy.rlwy.net',
+#         'PORT': '52695',
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#         }
 #     }
+#
 # }
+
+# if 'DATABASE_URL' in os.environ:
+#     DATABASES['default'] = dj_database_url.config(
+#         conn_max_age=500,
+#         conn_health_checks=True,
+#     )
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
