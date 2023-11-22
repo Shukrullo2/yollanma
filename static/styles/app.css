@@ -155,14 +155,14 @@ img {
     left: 0;
     bottom: 0;
     right: 0;
-    background: var(--color-sub);
+    background: var(--color-bg);
     transition: all 0.5s ease-in-out;
   }
 
   .header__menuItem a {
     transition: all 0.5s ease-in-out;
     padding: 1rem 3rem;
-    background: var(--color-gray);
+    background: var(--color-light);
     color: #101c34;
   }
 
