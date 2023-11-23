@@ -48,7 +48,6 @@ def registerUser(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            print('sdfsdfadf')
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
@@ -247,3 +246,5 @@ def noUser(request, pk):
     messageRequest = Message.objects.get(id=pk)
     context = {'msg': messageRequest}
     return render(request, 'no_user.html', context)
+
+

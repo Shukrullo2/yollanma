@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 import uuid
 from django.db.models.signals import post_save, post_delete
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+
+
+def custom_email_validator(value):
+    # Add your custom email validation logic here
+    if not value.endswith('wiut.uz'):
+        raise ValidationError(_('Use your WIUT email!'))
 
 # Create your models here.
 
@@ -16,7 +25,7 @@ class Profile(models.Model):
 
     name = models.CharField(max_length=200, blank=True, null=True)
 
-    email = models.EmailField(max_length=500, blank=True, null=True)
+    email = models.EmailField(max_length=500, blank=True, null=True, validators=[custom_email_validator])
     short_intro = models.CharField(max_length=500, blank=True, null=True)
     profile_pic = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/default.jpg')
     bio = models.TextField(blank=True, null=True)
@@ -26,8 +35,8 @@ class Profile(models.Model):
     social_github = models.CharField(max_length=200, blank=True, null=True)
     social_website = models.CharField(max_length=200, blank=True, null=True)
 
-
-
+    def validate_unique(self, exclude=None):
+        super().validate_unique(exclude=exclude)
     def __str__(self):
         return str(self.username)
 

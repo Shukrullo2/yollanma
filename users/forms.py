@@ -1,12 +1,12 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile, Skill, Message
+from .models import Profile, Skill, Message, custom_email_validator
 from django import forms
 
 
 class CustomUserCreationForm(UserCreationForm):
-
+    email = forms.EmailField(validators=[custom_email_validator])
     class Meta:
         model = User
         fields = ['first_name', 'email', 'username', 'password1', 'password2']
