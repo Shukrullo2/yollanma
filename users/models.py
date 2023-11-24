@@ -9,8 +9,9 @@ from django.utils.translation import gettext_lazy as _
 
 def custom_email_validator(value):
     # Add your custom email validation logic here
-    if not value.endswith('wiut.uz'):
-        raise ValidationError(_('Use your WIUT email!'))
+    forbidden_strings = ['gmail', 'mail', 'yahoo', 'zoho', 'yandex']
+    if any(forbidden_str in value for forbidden_str in forbidden_strings):
+        raise ValidationError(_('Use your WIUT or company email!'))
 
 # Create your models here.
 

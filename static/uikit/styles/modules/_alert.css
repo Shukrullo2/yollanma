@@ -1,7 +1,9 @@
 .alert {
-  display: flex;
+  display: inline-flex;
+  position: absolute;
+  left: 40%;
   gap: 3rem;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2.5rem;
   border-radius: 3px;
