@@ -108,7 +108,13 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #
 # }
 
-DATABASES =[]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(
@@ -118,12 +124,6 @@ if 'DATABASE_URL' in os.environ:
     )
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 # DATABASES = {
 #     'default': {
