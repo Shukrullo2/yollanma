@@ -100,29 +100,30 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME':  'railway',
 #         'USER': 'postgres',
-#         'PASSWORD': 'GfCEFdebCcdFdABF-BGCEgAb5*2*Bece',
-#         'HOST': 'viaduct.proxy.rlwy.net',
-#         'PORT': '52695',
-#         'OPTIONS': {
-#             'sslmode': 'require',
-#         }
+#         'PASSWORD': 'bbCC6F1F63egdCD42-ggDgBgeecg2FgA',
+#         'HOST': 'monorail.proxy.rlwy.net',
+#         'PORT': '47058',
+#
 #     }
 #
 # }
 
-# if 'DATABASE_URL' in os.environ:
-#     DATABASES['default'] = dj_database_url.config(
-#         conn_max_age=500,
-#         conn_health_checks=True,
-#     )
+DATABASES =[]
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=500,
+        conn_health_checks=True,
+
+    )
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
