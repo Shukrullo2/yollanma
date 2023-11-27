@@ -16,7 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
             'social_instagram': 'Link to Instagram Profile',
             'social_telegram': 'Link to Telegram Profile',
             'social_github': 'Link to GitHub Profile',
-            'social_website': 'Link to Personal Website',
+            'social_website': 'Link to Website',
         }
 
     def __init__(self, *args, **kwargs):
@@ -38,7 +38,7 @@ class ProfileForm(ModelForm):
             'social_instagram': 'Link to Instagram Profile',
             'social_telegram': 'Link to Telegram Profile',
             'social_github': 'Link to GitHub Profile',
-            'social_website': 'Link to Personal Website',
+            'social_website': 'Link to Website',
         }
     order = ['name', 'email', 'username', 'location', 'bio', 'short_intro', 'profile_pic',
                   'social_github', 'social_instagram', 'social_linkedin', 'social_telegram',
