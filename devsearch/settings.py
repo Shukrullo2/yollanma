@@ -60,6 +60,7 @@ MIDDLEWARE = [
 
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1']
 
 
 ROOT_URLCONF = 'devsearch.urls'
