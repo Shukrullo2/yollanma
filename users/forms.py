@@ -11,7 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['first_name', 'email', 'username', 'password1', 'password2']
         labels = {
-            'first_name': 'Name'
+            'first_name': 'Name',
+            'social_linkedin': 'Link to LinkedIn Profile',
+            'social_instagram': 'Link to Instagram Profile',
+            'social_telegram': 'Link to Telegram Profile',
+            'social_github': 'Link to GitHub Profile',
+            'social_website': 'Link to Personal Website',
         }
 
     def __init__(self, *args, **kwargs):
@@ -27,7 +32,14 @@ class ProfileForm(ModelForm):
                   'social_github', 'social_instagram', 'social_linkedin', 'social_telegram',
                   'social_website',
                   }
-
+        labels = {
+            'first_name': 'Name',
+            'social_linkedin': 'Link to LinkedIn Profile',
+            'social_instagram': 'Link to Instagram Profile',
+            'social_telegram': 'Link to Telegram Profile',
+            'social_github': 'Link to GitHub Profile',
+            'social_website': 'Link to Personal Website',
+        }
     order = ['name', 'email', 'username', 'location', 'bio', 'short_intro', 'profile_pic',
                   'social_github', 'social_instagram', 'social_linkedin', 'social_telegram',
                   'social_website']
