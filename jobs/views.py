@@ -117,6 +117,7 @@ def changeJobStatus(request, pk):
     job = Job.objects.get(id=pk)
     if job.is_active:
         job.is_active = False
+        job.click_total = 0
         job.save()
     else:
         job.is_active = True
