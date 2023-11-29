@@ -1,1 +1,1 @@
-web: gunicorn devsearch.wsgi:application -c gunicorn_config.py
+web: gunicorn devsearch.wsgi:application --log-file -
