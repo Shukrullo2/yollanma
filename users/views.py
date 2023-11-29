@@ -225,7 +225,7 @@ def createMessage(request, pk):
     sender = request.user.profile
     form = MessageForm()
     if request.method == 'POST':
-        form = MessageForm(request.POST)
+        form = MessageForm(request.POST, request.FILES)
 
         if form.is_valid():
             messageObj = form.save(commit=False)
