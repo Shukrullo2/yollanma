@@ -123,7 +123,9 @@ def editAccount(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save()
+            user_form = form.save(commit=False)
+            user_form.profile_pic = request.FILES['profile_pic']
+            user_form.save()
             return redirect('account')
     context = {'form': form}
     return render(request, 'profile_form.html', context)
