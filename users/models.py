@@ -63,7 +63,7 @@ class Message(models.Model):
     subject = models.CharField(max_length=200, null=True, blank=True)
     body = models.TextField()
 
-    created = models.DateTimeField(auto_now_add=True, timezone='UTC')
+    created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     is_read = models.BooleanField(default=False, null=True)
 
