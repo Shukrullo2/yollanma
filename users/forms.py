@@ -75,7 +75,7 @@ class SkillForm(ModelForm):
 class MessageForm(ModelForm):
     class Meta:
         model = Message
-        fields = {'email', 'subject', 'body'}
+        fields = {'email', 'subject', 'body', 'attached'}
 
     def __init__(self, *args, **kwargs):
         super(MessageForm, self).__init__(*args, **kwargs)
