@@ -1,4 +1,4 @@
-timeout = 120
+timeout = 20
 loglevel = "info"
 accesslog = "-"
 errorlog = "-"
