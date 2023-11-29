@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
-    'jobs.apps.JobsConfig'
+    'jobs.apps.JobsConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -95,55 +96,20 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':  'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'bbCC6F1F63egdCD42-ggDgBgeecg2FgA',
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': '47058',
-#
-#     }
-#
-# }
-
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':  'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '246Shukrullo',
+        'HOST': 'database-1.cbzuhilfe8pb.eu-north-1.rds.amazonaws.com',
+        'PORT': '5432',
 
     }
+
 }
 
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=500,
-        conn_health_checks=True,
-
-    )
-
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':  'devsearch',
-#         'USER': 'postgres',
-#         'PASSWORD': '0000',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-
-# DATABASES = {
-#     'default': {
-#         dj_database_url.config(
-#         conn_max_age=500,
-#         conn_health_checks=True,
-#     )
-#     }
-# }
 
 
 # Password validation
@@ -211,3 +177,9 @@ django_heroku.settings(locals())
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+AWS_S3_ACCESS_KEY_ID = 'AKIA2T4TZVEZHRZBT57K'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'fbazar'
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
