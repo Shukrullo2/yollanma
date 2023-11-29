@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-
 def custom_email_validator(value):
     # Add your custom email validation logic here
     forbidden_strings = ['gmail', 'mail', 'yahoo', 'zoho', 'yandex']
@@ -63,7 +62,8 @@ class Message(models.Model):
     email = models.EmailField(max_length=200, null=True, blank=True)
     subject = models.CharField(max_length=200, null=True, blank=True)
     body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+
+    created = models.DateTimeField(auto_now_add=True, timezone='UTC')
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     is_read = models.BooleanField(default=False, null=True)
 
