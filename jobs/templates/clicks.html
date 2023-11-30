@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% block content%}
+
+<main class="inbox my-xl">
+<!--    <div class="content-box">-->
+<!--      <h3 class="inbox__title">Job Status</h3>-->
+<!--      <ul class="messages">-->
+
+<!--        <li class="message message&#45;&#45;unread" >-->
+<!--            {% if job.is_assigned %}-->
+<!--            <span class="message__author">The job is assigned to {{job.assigned.name}}</span> on-->
+<!--            <span class="message__subject"><a href="">{{job.assigned_date}} </a></span> &nbsp;-->
+<!--            {% else %}-->
+<!--            <span class="message__author">The job has not been assigned yet.</span>-->
+<!--            {%endif%}-->
+<!--        </li>-->
+
+
+<!--      </ul>-->
+<!--    </div>-->
+    <br>
+    <div class="content-box">
+      <h3 class="inbox__title">All clicks(<span>{{job.click_total}}</span>)</h3>
+      <ul class="messages">
+          {% if job.click_total != 0 %}
+        {% for clicker in clicks%}
+        <li class="message message--unread" >
+            <span class="message__author">{{clicker.name}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span class="message__subject"><a href="{% url 'user_profile' clicker.id %}">View profile </a></span> &nbsp;
+<!--            {% if not job.is_assigned%}-->
+<!--            <span class="message__subject"><a href="{% url 'assign-job' jobid clicker.id %}">Assign the job </a></span> &nbsp; {%endif%}-->
+            <span class="message__subject"><a href="{% url 'create-message' clicker.id %}">Message the freelancer </a></span>
+
+        </li>
+    {%endfor%}
+          {% else %}
+          <li class="message message--unread" >
+            <span class="message__author">No clicks yet</span>
+
+        </li>
+          {%endif%}
+      </ul>
+    </div>
+  </main>
+
+{% endblock content%}

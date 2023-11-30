@@ -1,0 +1,62 @@
+{% extends 'main.html'%}
+
+{% block content %}
+  <!-- Main Section -->
+  <main class="messagePage my-xl">
+    <div class="content-box">
+      <a class="backButton" href="{% url 'inbox' %}"><i class="fa fa-chevron-left"></i></a><br>
+
+                <br>
+      <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form__field" >
+                        <label for="formInput#text">{{form.subject.label}}</label>
+                        {{form.subject}}
+                    </div>
+                    <div class="form__field">
+                        <label for="formInput#text">{{form.body.label}}</label>
+                        {{form.body}}
+                    </div>
+                    <div class="form__field">
+                        <label for="formInput#text">{{form.attached.label}}</label>
+                        {{form.attached}}
+                    </div>
+
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Reply" />
+      </form>
+
+      {%for message in messageRequest%}
+      {% if message.sender == request.user.profile %}
+      <div class=" message my-message ">
+        <h4 class="message__subject">{{message.subject}}</h4>
+          <a href="{% url 'user_profile' message.sender.id %}" class="message__author">{{message.name}}</a>
+          <p class="message_date">{{message.created}}</p>
+          <div class="message__body ">
+            {{message.body|linebreaksbr}}
+            </div>
+          {% if message.attached %}
+          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
+          {% endif %}
+        </div>
+      <br>
+        {%else%}
+        <div class="message ">
+        <h4 class="message__subject">{{message.subject}}</h4>
+          <a href="{% url 'user_profile' message.sender.id %}" class="message__author">{{message.name}}</a>
+          <p class="message__date">{{message.created}}</p>
+          <div class="message__body ">
+            {{message.body|linebreaksbr}}
+          </div>
+
+              {% if message.attached %}
+          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
+          {% endif %}
+            </div>
+      <br>
+
+        {%endif%}
+      {%endfor%}
+    </div>
+  </main>
+{% endblock content %}
