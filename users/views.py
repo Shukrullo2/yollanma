@@ -199,15 +199,18 @@ def viewMessage(request, pk):
     recipient = request.user.profile
     form = MessageForm()
     if request.method == 'POST':
-        form = MessageForm(request.POST)
+        form = MessageForm(request.POST, request.FILES)
 
         if form.is_valid():
             messageObj = form.save(commit=False)
             messageObj.recipient = sender
             messageObj.sender = recipient
+            messageObj.attached = request.FILES['attached']
+            print(request.FILES)
             if sender:
                 # messageObj.name = sender.name
                 messageObj.email = recipient.email
+
             messageObj.save()
             messages.success(request, 'Message is Sent')
             return redirect(request.path, pk)
@@ -227,12 +230,14 @@ def createMessage(request, pk):
     sender = request.user.profile
     form = MessageForm()
     if request.method == 'POST':
-        form = MessageForm(request.POST)
+        form = MessageForm(request.POST, request.FILES)
 
         if form.is_valid():
             messageObj = form.save(commit=False)
             messageObj.recipient = recipient
+            messageObj.attached = request.FILES['attached']
             messageObj.sender = sender
+            print(request.FILES)
             if sender:
                 # messageObj.name = sender.name
                 messageObj.email = sender.email
