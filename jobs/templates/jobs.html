@@ -7,7 +7,7 @@
     <section class="hero-section text-center">
       <div class="container container--narrow">
         <div class="hero-section__box">
-          <h2>Search <span>Jobs</span></h2>
+          <h2>Search <span>Tasks</span></h2>
         </div>
 
         <div class="hero-section__search">
@@ -42,7 +42,7 @@
                   <h3 class="project__title">{{item.title}}</h3>
                   <p><a class="project__author" href="{% url 'user_profile' item.owner.id %}">By {{item.owner.name}}</a></p>
                   <p class="project--rating">
-                    <span style="font-weight: bold;"> {{ item.click_total }} </span> Clicks | <span style="font-weight: bold;">{{item.budget}}</span> | <span style="font-weight: bold;">{{item.duration}}</span>
+                    <span style="font-weight: bold;"> {% if item.click_total == 1 %} 1 Click {%else%} {{ item.click_total}} Clicks{% endif %}</span>  | <span style="font-weight: bold;">{{item.budget}}</span> | <span style="font-weight: bold;">{{item.duration}}</span>
                   </p>
                   <div class="project__tags">
                          {% for tag in item.tags.all %}
