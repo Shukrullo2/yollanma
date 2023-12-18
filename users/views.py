@@ -205,8 +205,8 @@ def viewMessage(request, pk):
             messageObj = form.save(commit=False)
             messageObj.recipient = sender
             messageObj.sender = recipient
-            messageObj.attached = request.FILES['attached']
-            print(request.FILES)
+            if request.FILES:
+                messageObj.attached = request.FILES['attached']
             if sender:
                 # messageObj.name = sender.name
                 messageObj.email = recipient.email
