@@ -8,14 +8,12 @@
                 <br>
 
                 <form class="form" method="POST">
-                    {% csrf_token %}
-                    {%for field in form%}
-                    <div class="form__field">
-                        <label for="formInput#text">{{field.label}} </label>
-                        {{field}}
-                    </div>
-                     {%endfor%}
-
+                    {% csrf_token %} 
+                    
+                    
+                   {{checkboxform.type_freelancer.label_tag}}  {{checkboxform.type_freelancer}} <br>
+                   {{checkboxform.type_client.label_tag}}  {{checkboxform.type_client}}<br>
+                
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
             </div>

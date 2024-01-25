@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('no_user/<str:pk>', views.noUser, name='no-user'),
     path('set-profile-type/', views.setProfileType, name='set-type'),
     path('companies/', views.companies, name='companies'),
+    # path('activate/<uidb64>/<token>', views.activate, name='activate')
 
 ]
 

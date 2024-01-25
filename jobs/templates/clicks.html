@@ -27,8 +27,8 @@
         <li class="message message--unread" >
             <span class="message__author">{{clicker.name}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <span class="message__subject"><a href="{% url 'user_profile' clicker.id %}">View profile </a></span> &nbsp;
-<!--            {% if not job.is_assigned%}-->
-<!--            <span class="message__subject"><a href="{% url 'assign-job' jobid clicker.id %}">Assign the job </a></span> &nbsp; {%endif%}-->
+      {% if not job.is_assigned%}
+      <span class="message__subject"><a href="{% url 'assign-job' jobid clicker.id %}">Assign the job </a></span> &nbsp; {%endif%}
             <span class="message__subject"><a href="{% url 'create-message' clicker.id %}">Message the freelancer </a></span>
 
         </li>

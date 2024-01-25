@@ -7,6 +7,10 @@ class JobForm(ModelForm):
     class Meta:
         model = Job
         fields = ['title', 'featured_image', 'description', 'tags', 'budget', 'duration']
+        labels = {
+            'budget': 'Budget in soums',
+            'duration': 'Duration in days'
+        }
 
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)

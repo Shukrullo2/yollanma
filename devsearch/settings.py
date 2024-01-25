@@ -100,8 +100,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':  'postgres',
         'USER': 'postgres',
-        'PASSWORD': '246Shukrullo',
-        'HOST': 'database-1.cbzuhilfe8pb.eu-north-1.rds.amazonaws.com',
+        'PASSWORD': 'navoiy123',
+        'HOST': 'freelance.cbzuhilfe8pb.eu-north-1.rds.amazonaws.com',
         'PORT': '5432',
 
     }
@@ -145,10 +145,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'ashukrullowork@gmail.com'
-EMAIL_HOST_PASSWORD = '246Shukrullo'
+EMAIL_HOST_PASSWORD = 'wwkxgwnebwlxbtkg'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
+PASSWORD_RESET_TIMEOUT = 14400
 
 
 # Static files (CSS, JavaScript, Images)

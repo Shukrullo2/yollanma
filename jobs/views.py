@@ -104,10 +104,11 @@ def clicks(request, pk):
 def assignJob(request, pk, sk):
     job=Job.objects.get(id=pk)
     profile = Profile.objects.get(id=sk)
+    name = profile.name
     job.assigned = profile
     job.is_assigned = True
     job.save()
-    messages.success(request, 'The job is now assigned to ', profile.name)
+    messages.success(request, 'The job is now assigned to ', name)
     return redirect('clicks', pk)
 
 

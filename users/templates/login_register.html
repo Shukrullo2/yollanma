@@ -14,7 +14,7 @@
           <h3>Account SignUp</h3>
           <p>Create a new developer account</p>
         </div>
-        <form method="POST" action="{% url 'register' %}" class="form auth__form">
+        <form method="POST" action="{% url 'register'%}" class="form auth__form">
           {% csrf_token %}
 
           {% for field in form %}
@@ -30,6 +30,7 @@
 
           </div>
           {% endfor %}
+          {{checkboxform.as_p}}
           <div class="auth__actions">
             <input class="btn btn--sub btn--lg" type="submit" value="Sign Up" />
           </div>
@@ -40,8 +41,8 @@
           <a href="{% url 'login'%}">Log In</a>
         </div>
       </div>
-    </div>
 
+    
 {% else %}
 
 

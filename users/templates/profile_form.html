@@ -9,14 +9,14 @@
 
 
 
-                <form class="form" action=" {% url 'edit-account' %} " method="POST" enctype="multipart/form-data">
+                <form class="form"  method="POST" enctype="multipart/form-data">
 
                     {% csrf_token %}
 
 
                    {%for field in form%}
                     <div class="form__field">
-                        {% if request.user.profile.user_type == 'company' and field.label == 'Bio'%}
+                        {% comment %} {% if request.user.profile.user_type == 'company' and field.label == 'Bio'%}
                          <label for="formInput#text">About Company </label>
                             {{field}}
                         {%elif request.user.profile.user_type == 'company' and field.label == 'Name'%}
@@ -25,10 +25,14 @@
                             {{field}}
 
 
-                        {%else%}
+                        {%else%} {% endcomment %}
                         <label for="formInput#text">{{field.label}} </label>
                       {{field}}
-                        {%endif%}
+                        {% comment %} {%endif%} {% endcomment %}
+                        {% for error in field.errors %}
+                    <p style="color:#c4171b;">{{error}}</p>
+                        {% endfor %}
+
                     </div>
                     {% endfor %}
 

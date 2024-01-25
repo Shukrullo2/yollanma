@@ -1,15 +1,25 @@
 from django.shortcuts import render, redirect
 from .models import Profile, Skill, Message
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm, CustomProfileForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm, CheckboxForm
 from django.contrib import messages
 from .utils import searchProfiles, paginateProfiles
 from django.contrib.auth.models import User
 from django.db.models import Q
-
+from django.core.mail import EmailMessage
+from .decorators import user_is_active
+from django.utils.encoding import force_str
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator as account_activation_token
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_decode
 
 # Create your views here.
+
+
 
 def loginUser(request):
     page = 'login'
@@ -51,6 +61,7 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+            user.is_active=False
             messages.success(request, 'User account is created')
             login(request, user)
             return redirect('set-type')
@@ -62,21 +73,23 @@ def registerUser(request):
 
 def setProfileType(request):
     profile = request.user.profile
-    form = CustomProfileForm(instance=profile)
+    checkboxform = CheckboxForm()
     if request.method == 'POST':
-        form = CustomProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user_type = request.POST.get('user_type')
+        checkboxform = CheckboxForm(request.POST)
+        if 'type_freelancer' in checkboxform.data:
+            profile.user_type = 'Freelance'
             profile.save()
-            return redirect('edit-account')
-    context = {'form': form}
+        else:
+            profile.user_type = 'Client'
+            profile.save()
+        return redirect('edit-account')
+    context = {'checkboxform': checkboxform}
     return render(request, 'profile_type_form.html', context)
 
 
 def profiles(request):
     profileObj1, search_query = searchProfiles(request)
-    profileObj = tuple(x for x in profileObj1 if x.user_type == 'freelance')
+    profileObj = tuple(x for x in profileObj1 if x.user_type == 'Freelance')
     custom_range, profileObj = paginateProfiles(request, profileObj, 3)
     return render(request, 'profiles.html',
                   {'profiles': profileObj, 'search_query': search_query, 'custom_range': custom_range})
@@ -84,7 +97,7 @@ def profiles(request):
 
 def companies(request):
     companiesObj1, search_query = searchProfiles(request)
-    companiesObj = tuple(x for x in companiesObj1 if x.user_type == 'company')
+    companiesObj = tuple(x for x in companiesObj1 if x.user_type == 'Client')
     custom_range, profileObj = paginateProfiles(request, companiesObj, 3)
     return render(request, 'companies.html',
                   {'profiles': companiesObj, 'search_query': search_query, 'custom_range': custom_range})
@@ -115,18 +128,58 @@ def userAccount(request):
     context = {'profile': profile, 'skills': skill, 'projects': projects, 'jobs': jobs, 'assigned_job': assigned}
     return render(request, 'account.html', context)
 
+# def activate(request, uidb64, token):
+#     User = get_user_model()
+#     try:
+#         uid =force_str(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except:
+#         user = None
+#     if user is not None and account_activation_token(user, token):
+#         user.is_active = True
+#         user.save()
+
+#         messages.success(request, 'Account is activated')
+#         return redirect("login")
+#     else:
+#         messages.error(request, "activation link invalid")
+#     return redirect('/')
+
+# def activateEmail(request, user, to_email):
+#     mail_subject = "Activate your user account."
+#     message = render_to_string("template_activate_account.html",{
+#         'user': user.username,
+#         'domain': get_current_site(request).domain,
+#         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+#         'token': account_activation_token.make_token(user),
+#         'protocol': 'https' if request.is_secure() else 'http'
+#     })
+#     email = EmailMessage(mail_subject, message, to=[to_email])
+#     if email.send():
+#         print("email is sent")
+#         messages.success(request, f'Dear {user}, please go to your email {to_email} inbox and click on received activation link \
+#                      to complete registration. <b>Note:<b> Check your spam folder')
+#     else:
+#         message.error(request, 'Something happend. Check the correctness of the email you have inserted')
 
 @login_required(login_url='login')
 def editAccount(request):
     profile = request.user.profile
     form = ProfileForm(instance=profile)
     if request.method == 'POST':
+        print(request.POST)
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            user_form = form.save(commit=False)
-            user_form.profile_pic = request.FILES['profile_pic']
-            user_form.save()
+            form.save()
+            # activateEmail(request, request.user, profile.email)
+            # profile.profile_pic = request.FILES['profile_pic']
+            # profile.save()
+            # user_form = form.save(commit=False)
+            # user_form.profile_pic = request.FILES['profile_pic']
+            # user_form.save()
             return redirect('account')
+        else:
+            messages.error(request, "An error has occured")
     context = {'form': form}
     return render(request, 'profile_form.html', context)
 
