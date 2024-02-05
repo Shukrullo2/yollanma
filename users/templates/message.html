@@ -32,9 +32,11 @@
         <h4 class="message__subject">{{message.subject}}</h4>
           <a href="{% url 'user_profile' message.sender.id %}" class="message__author">{{message.name}}</a>
           <p class="message_date">{{message.created}}</p>
+          
           <div class="message__body ">
-            {{message.body|linebreaksbr}}
+            {{message.body|safe|linebreaksbr}}
             </div>
+            
           {% if message.attached %}
           <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
           {% endif %}
@@ -46,9 +48,8 @@
           <a href="{% url 'user_profile' message.sender.id %}" class="message__author">{{message.name}}</a>
           <p class="message__date">{{message.created}}</p>
           <div class="message__body ">
-            {{message.body|linebreaksbr}}
+            {{message.body|safe|linebreaksbr}}
           </div>
-
               {% if message.attached %}
           <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
           {% endif %}

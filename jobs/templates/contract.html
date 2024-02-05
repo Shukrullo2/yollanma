@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+{% block content%}
+
+<main class="inbox my-xl">
+<!--    <div class="content-box">-->
+<!--      <h3 class="inbox__title">Job Status</h3>-->
+<!--      <ul class="messages">-->
+
+<!--        <li class="message message&#45;&#45;unread" >-->
+<!--            {% if job.is_assigned %}-->
+<!--            <span class="message__author">The job is assigned to {{job.assigned.name}}</span> on-->
+<!--            <span class="message__subject"><a href="">{{job.assigned_date}} </a></span> &nbsp;-->
+<!--            {% else %}-->
+<!--            <span class="message__author">The job has not been assigned yet.</span>-->
+<!--            {%endif%}-->
+<!--        </li>-->
+
+
+<!--      </ul>-->
+<!--    </div>-->
+    <br>
+    <div class="content-box">
+      <h3 class="inbox__title"> Contract Details</span> </h3>
+      <ul class="messages">
+        <h1>Contract Details</h1>
+        <p>Task ID: {{ contract.job.id }}</p>
+        <p>Task Name: {{ contract.job.title }}</p>
+        <p>Task Description: {{ contract.job.description }}</p>
+      
+        <!-- Add more fields as needed -->
+      
+        <h4>Parties:</h4>
+        <h5>Client:</h5>
+        <ul>
+          <li>Username: {{ contract.client.username }}</li>
+          <li>Full Name: {{ contract.client.full_name }}</li>
+        </ul>
+      
+        <h5>Freelancer:</h5>
+        <ul>
+          <li>Username: {{ contract.freelancer.username }}</li>
+          <li>Full Name: {{ contract.freelancer.full_name }}</li>
+        </ul>
+      
+        <h4>Contract Terms:</h4>
+        <p>The agreed-upon price for the task is {{ contract.job.budget }}.</p>
+        <p>The duration for completing the task is {{ contract.job.duration }}.</p>
+      
+        <!-- Add more fields as needed -->
+      
+        <h4>Contractual Agreements:</h4>
+        <p>Scope of Work: {{ contract.job.description }}</p>
+        <p>Payment and Settlement: {{ contract.payment_details }}</p>
+      
+        <!-- Add more fields as needed -->
+      
+        <h4>Prohibited Content:</h4>
+        <p>Both parties acknowledge that it is strictly prohibited to include content in the task that involves or promotes...</p>
+      
+        <!-- Add more sections as needed -->
+      
+        <h4>Governing Law:</h4>
+        <p>This Contract is governed by and construed in accordance with the laws of {{ contract.governing_law }}.</p>
+      
+        <!-- Add more sections as needed -->
+      
+        <h4>Contact Information:</h4>
+        <p>For inquiries or concerns related to this Contract, contact {{ contract.contact_email }}.</p>
+      
+        <h4>Agreement:</h4>
+        <p>By accepting this task and entering into this Contract, both parties acknowledge that they have read, understood, and agree...</p>
+      
+        <h4>Freelance Bazar</h4>
+        <p>[Address]</p>
+        <p>[Date]</p>
+      
+        <h4>Signatures:</h4>
+        <p>Client's Signature: __________________________</p>
+        <p>Freelancer's Signature: _______________________</p>
+      </ul>
+      <form method="POST"> 
+        {% csrf_token %}
+      
+    
+      <div class="singleProject__info" >
+        <p style="color: red;">By clicking the button below, you agree and sign the task completion contract.</p>
+    
+      <br />
+    
+    </div>
+    
+    {% if request.user.profile.id == contract.freelancer.id %}
+    <input type="hidden" name="combined_vars" value="{{contract.id}}_{{contract.freelancer.id }}">
+    <input class="btn btn--sub btn--lg  my-md"  type="submit" value="Agree and Sign" />
+    {% else %}
+    <p> You are not authorised to sign the contract <p>
+    {% endif %}
+      </form>
+
+
+    </div>
+  
+  </main>
+
+
+
+  
+
+{% endblock content%}

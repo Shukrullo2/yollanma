@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Job
+from .models import Job, Contract
 from projects.models import Tag
 from django import forms
 
@@ -24,3 +24,19 @@ class JobForm(ModelForm):
             self.fields['tags'].queryset = Tag.objects.filter(job=instance)
         else:
             self.fields['tags'].queryset = Tag.objects.none()
+
+
+class ContractForm(ModelForm):
+    class Meta:
+        model = Contract
+        fields = ['title', 'budget', 'duration', 'description', ]
+        labels = {
+            'budget': 'Budget in soums',
+            'duration': 'Duration in days'
+        }
+    def __init__(self, *args, **kwargs):
+        super(ContractForm, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input'})
+
+      

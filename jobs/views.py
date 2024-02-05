@@ -1,25 +1,38 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Job
-from .forms import JobForm
+from .models import Job, Contract
+from .forms import JobForm, ContractForm
 from projects.models import Tag
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from users.models import Profile
+from users.views import createMessage
+from .utils import generate_contract_pdf, searchJobs, paginateProfiles
+from users.models import Message
+from users.forms import MessageForm
 # Create your views here.
 
 
 def jobs(request):
-    jobs = Job.objects.filter(is_active=True)
-    context = {'jobs': jobs}
-    return render(request, 'jobs.html', context)
+    jobObj1, search_query = searchJobs(request)
+    jobObj = tuple(x for x in jobObj1 if not x.is_assigned and x.is_active)
+    custom_range, jobObj = paginateProfiles(request, jobObj, 3)
+    return render(request, 'jobs.html',
+                  {'jobs': jobObj, 'search_query': search_query, 'custom_range': custom_range})
+   
 
+   
+   
+    
 
 def job(request, pk):
     job = Job.objects.get(id=pk)
     tags = job.tags.all()
     context = {'job': job, 'tags': tags}
     return render(request, 'job.html', context)
+
+
+
 
 
 @login_required(login_url="login")
@@ -43,6 +56,76 @@ def createJob(request):
 
     context = {'form': form,}
     return render(request, 'job_form.html', context)
+
+@login_required(login_url="login")
+def createContract(request, pk, sk):
+    profile = request.user.profile
+    freelancer = Profile.objects.get(id=pk)
+    job = Job.objects.get(id=sk)
+    form = ContractForm(request.POST)
+    if request.method == 'POST':
+        form = ContractForm(request.POST, request.FILES)
+        if form.is_valid():
+            contract = form.save(commit=False)
+            contract.client = job.owner
+            contract.freelancer = freelancer
+            contract.job = job
+            contract.save()
+            # return generate_contract_pdf(request, contract.id)
+            createTaskMessage(request, freelancer.id, contract.id)
+            return generate_contract_pdf(request, contract.id)
+            # return redirect('contract', contract.id)
+        else:
+            return HttpResponse('wrong')
+    else:
+        # If it's a GET request, pre-fill the form with job data
+        initial_data = {
+            'job': job,
+            'freelancer': freelancer,
+            'client': job.owner,
+            'title': job.title,
+            'budget': job.budget,
+            'duration': job.duration,
+            'featured_image': job.featured_image,
+            'description': job.description,
+        }
+
+        form = ContractForm(initial=initial_data)
+
+    context = {'form': form,}
+    return render(request, 'contract_form.html', context)
+
+def createTaskMessage(request, pk, sk):
+    contract = Contract.objects.get(id=sk)
+    recipient = Profile.objects.get(id=pk)
+    sender = request.user.profile
+    form = MessageForm({
+        'subject': 'Contract Assignment',
+        'body': f'Dear {recipient.name}, I have created a contract that we have recently agreed for this <a href="http://127.0.0.1:8000/jobs/job/{contract.job.id}">task</a>. \n Budget is {contract.budget} soums and you can finish it in {contract.duration}. Please find and download the contract <a href="http://127.0.0.1:8000/jobs/contract/{contract.id}">here</a>. Once you sign, the task will be assigned to you'
+    }
+    )
+    if form.is_valid:
+        form1=form.save(commit=False)
+        form1.recipient = recipient
+        form1.sender = sender
+        form1.save()
+    else:
+        messages.error(request, "Please fill all the fields accordingly")
+
+def contract(request, pk):
+    contract = Contract.objects.get(id=pk)
+    if request.method == "POST":
+        print(request.POST)
+        combined = request.POST['combined_vars']
+        contract_id, freelancer_id = combined.split('_')
+        print(contract_id, freelancer_id)
+        # freelancer_id = request.POST['freelancer_id']
+        contract = Contract.objects.get(id=contract_id)
+        contract.job.assigned = Profile.objects.get(id=freelancer_id)
+        contract.job.save()
+        return generate_contract_pdf(request, contract.id )
+    context ={'contract': contract}
+    return render(request, 'contract.html', context=context)
 
 
 @login_required(login_url="login")
@@ -118,9 +201,12 @@ def changeJobStatus(request, pk):
     job = Job.objects.get(id=pk)
     if job.is_active:
         job.is_active = False
+        job.clicked.clear()
+        job.assigned = None
         job.click_total = 0
         job.save()
     else:
         job.is_active = True
         job.save()
     return redirect('account')
+

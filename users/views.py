@@ -301,6 +301,13 @@ def createMessage(request, pk):
     context = {'form': form, 'recipient': pk}
     return render(request, 'message_form.html', context)
 
+def userAgreement(request, pk):
+    user_type = pk
+    
+    context = {'user_type':user_type }
+    
+
+    return render(request, 'user_agreement.html', context)
 
 def noUser(request, pk):
     messageRequest = Message.objects.get(id=pk)

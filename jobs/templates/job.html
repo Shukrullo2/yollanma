@@ -32,19 +32,19 @@
         </div>
 
         <div class="column column--2of3">
-          <img class="singleProject__preview" src="{% if project.featured_image %}{{project.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="portfolio thumbnail" />
+          <img class="singleProject__preview" src="{% if job.featured_image %}{{job.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="portfolio thumbnail" />
           <a href="{% url 'user_profile' job.owner.id %}" class="singleProject__developer">{{job.owner.name}}</a>
           <h2 class="singleProject__title">{{job.title}}</h2>
             <h3 class="singleProject__subtitle">Preferred Duration</h3>
           <div class="singleProject__info">
-              {{job.duration}}
+              {{job.duration}} days
 
             <br />
 
           </div>
             <h3 class="singleProject__subtitle">Allocated Budget</h3>
           <div class="singleProject__info">
-              {{job.budget}}
+              {{job.budget}} soums
 
             <br />
 

@@ -34,12 +34,16 @@
           <div class="auth__actions">
             <input class="btn btn--sub btn--lg" type="submit" value="Sign Up" />
           </div>
-
+          <p class='color: red;'>
+            By creating the user account you agree and sign "Freelance Bazar's User Agreement" for 
+            <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
+          </p>  
         </form>
         <div class="auth__alternative">
           <p>Already have an Account?</p>
           <a href="{% url 'login'%}">Log In</a>
         </div>
+       
       </div>
 
     

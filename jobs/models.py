@@ -30,3 +30,23 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['-created', 'title']
+
+
+class Contract(models.Model):
+    job = models.OneToOneField(Job, on_delete=models.CASCADE)
+    client = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE, related_name="Client")
+    freelancer = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE, related_name="Freelancer")
+    title = models.CharField(max_length=200, null=True, blank=True)
+    budget = models.CharField(max_length=200, null=True, blank=True)
+    duration = models.CharField(max_length=200, null=True, blank=True)
+    featured_image = models.ImageField(null=True, blank=True, default='default.jpg')
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    description = models.TextField(max_length=2000, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    is_signed = models.BooleanField(default=False, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created', 'title']

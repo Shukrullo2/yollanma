@@ -12,5 +12,7 @@ urlpatterns = [
     path('addclick/<str:pk>', views.addClick, name="add-click"),
     path('clikcs/<str:pk>', views.clicks, name="clicks"),
     path('assignjob/<str:pk>/<str:sk>', views.assignJob, name="assign-job"),
-    path('deactivate/<str:pk>', views.changeJobStatus, name="change-status")
+    path('deactivate/<str:pk>', views.changeJobStatus, name="change-status"),
+    path('create-contract/<str:pk>/<str:sk>', views.createContract, name="create-contract"),
+    path('contract/<str:pk>', views.contract, name='contract')
     ]

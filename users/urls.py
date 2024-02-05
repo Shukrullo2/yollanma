@@ -21,6 +21,7 @@ urlpatterns = [
     path('no_user/<str:pk>', views.noUser, name='no-user'),
     path('set-profile-type/', views.setProfileType, name='set-type'),
     path('companies/', views.companies, name='companies'),
+    path('user-agreement/<str:pk>', views.userAgreement, name='user-agreement')
     # path('activate/<uidb64>/<token>', views.activate, name='activate')
 
 ]

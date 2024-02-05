@@ -94,11 +94,14 @@
           </div>
 
           <table class="settings__table">
+
             {% for job in jobs %}
             <tr>
+
               <td class="settings__thumbnail">
                 <a href="{% url 'job' job.id%}"><img src="{% if job.featured_image %}{{job.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="Project Thumbnail" /></a>
               </td>
+
               <td class="settings__tableInfo">
                 <a href="{% url 'job' job.id%}">{{job.title}}</a>
                 {% if job.is_assigned %}
@@ -108,10 +111,10 @@
                   {{job.description|slice:"150"}}
                 </p>
               </td>
+
               <td class="settings__tableActions">
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-job' job.id %}"><i class="im im-edit"></i> Edit</a>
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-job' job.id %}"><i class="im im-x-mark-circle-o"></i>Delete</a>
-
                   {% if job.is_active%}
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'change-status' job.id %}"><i class="im im-x-mark-circle-o"></i>
                   Deactivate</a>
@@ -120,13 +123,18 @@
                   Activate</a>
                   {%endif%}
 
+                  {% if not job.assigned and job.is_active %}
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'clicks' job.id %}"><i class="im im-x-mark-circle-o"></i>Clicks </a>
+                    {% endif %}
+
               </td>
+
             </tr>
+            {% endfor %}
           </table>
           
            
-            {% endfor %}
+          
             
     {% else %}
 
@@ -158,30 +166,8 @@
           </table>
           <br>
 
-            <div class="settings">
-              <h3 class="settings__title">Projects</h3>
-              <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="im im-plus"></i> Add Project</a>
-            </div>
-            <table class="settings__table">
-              {% for project in projects %}
-              <tr>
-                <td class="settings__thumbnail">
-                  <a href="{% url 'project' project.id%}"><img src="{% if project.featured_image %}{{project.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="Project Thumbnail" /></a>
-                </td>
-                <td class="settings__tableInfo">
-                  <a href="{% url 'project' project.id%}">{{project.title}}</a>
-                  <p>
-                    {{project.description|slice:"150"}}
-                  </p>
-                </td>
-                <td class="settings__tableActions">
-                  <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i class="im im-edit"></i> Edit</a>
-                  <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project' project.id %}"><i class="im im-x-mark-circle-o"></i>
-                    Delete</a>
-                    
-                </td>
-              </tr>
-              {% endfor %}
+            
+           
   
             </table>
           {% if assigned_job%}
@@ -203,11 +189,11 @@
                   {{assigned_job.description|slice:"150"}}
                 </p>
               </td>
-              <td class="settings__tableActions">
+              {% comment %} <td class="settings__tableActions">
                 <a class="tag tag--pill tag--main settings__btn" href=""><i class="im im-edit"></i> Edit</a>
                 <a class="tag tag--pill tag--main settings__btn" href=""><i class="im im-x-mark-circle-o"></i>
                   Delete</a>
-              </td>
+              </td> {% endcomment %}
             </tr>
 
 
