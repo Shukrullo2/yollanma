@@ -22,103 +22,102 @@ def generate_contract_pdf(request, contract_id):
 
     # Title
     p.setFont("Helvetica-Bold", 16)
-    p.drawCentredString(300, 770, 'Freelance Bazar Task Contract')
+    p.drawCentredString(300, 770, 'Yollanma.uz Vazifa Bajarish Shartnomasi')
 
     # Contract Details
     p.setFont("Helvetica", 12)
     y_position = 750
 
     # Task Details
-    p.drawString(50, y_position, 'Contract Details:')
+    p.drawString(50, y_position, 'Shartnoma Tafsilotlari:')
     y_position -= 15
-    p.drawString(50, y_position, f'1. Task ID: {job.id}')
+    p.drawString(50, y_position, f'1. Vazifa IDsi: {job.id}')
     y_position -= 15
-    p.drawString(50, y_position, f'2. Task Name: {job.title}')
+    p.drawString(50, y_position, f'2. Vazifa nomi: {job.title}')
     y_position -= 15
-    p.drawString(50, y_position, f'3. Task Description: {job.description}')
+    p.drawString(50, y_position, f'3. Vazifa Tasnifi: {job.description}')
     y_position -= 25
 
     # Parties
-    p.drawString(50, y_position, 'Parties:')
+    p.drawString(50, y_position, 'Taraflar:')
     y_position -= 15
-    p.drawString(70, y_position, 'Client:')
+    p.drawString(70, y_position, 'Buyurtmachi:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Username: {contract.client.username}')
+    p.drawString(90, y_position, f'  - Foydalanuvchi nomi: {contract.client.username}')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Full Name: {contract.client.name}')
+    p.drawString(90, y_position, f'  - Ism: {contract.client.name}')
     y_position -= 15
-    p.drawString(70, y_position, 'Freelancer:')
+    p.drawString(70, y_position, 'Frilanser:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Username: {contract.freelancer.username}')
+    p.drawString(90, y_position, f'  - Foydalanuvchi nomi: {contract.freelancer.username}')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Full Name: {contract.freelancer.name}')
+    p.drawString(90, y_position, f'  - Ism: {contract.freelancer.name}')
     y_position -= 25
 
-    # Contract Terms
-    p.drawString(50, y_position, 'Contract Terms:')
+    p.drawString(50, y_position, 'Shartnoma :')
     y_position -= 15
-    p.drawString(70, y_position, f'3. Price: The agreed-upon price for the task is {job.budget} Uzbek soums.')
+    p.drawString(70, y_position, f'3. Narx: Vazifa uchun kelgan narx {job.budget} O\'zbek so\'mi bo\'lganiga rozilik bildirilgan.')
     y_position -= 15
-    p.drawString(70, y_position, f'4. Duration: The duration for completing the task is {job.duration} days.')
+    p.drawString(70, y_position, f'4. Davr: Vazifani bajarish muddati {job.duration} kun bo\'lganiga rozilik bildirilgan.')
     y_position -= 25
 
-    # Contractual Agreements
-    p.drawString(50, y_position, 'Contractual Agreements:')
+    # Shartnoma Shartlari
+    p.drawString(50, y_position, 'Shartnoma Shartlari:')
     y_position -= 15
-    p.drawString(70, y_position, '5. Scope of Work:')
+    p.drawString(70, y_position, '5. Ishning miqyosi:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - The Freelancer agrees to complete the task as described in the task details.')
+    p.drawString(90, y_position, f'  - Frilans vazifani vazifa tafsilotlarida ta\'riflanganicha bajarishga rozilik bildiradi.')
     y_position -= 15
-    p.drawString(70, y_position, '6. Payment and Settlement:')
+    p.drawString(70, y_position, '6. To\'lov va Hisob-kitob:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Payment details and settlement terms are agreed upon independently between the Client and Freelancer.')
+    p.drawString(90, y_position, f'  - To\'lov tafsilotlari va hisob-kitob shartlari Mijoz va Frilans o\'rtasida mustaqil ravishda muvofiqlashtirilgan.')
     y_position -= 15
-    p.drawString(70, y_position, '7. Communication:')
+    p.drawString(70, y_position, '7. Muloqot:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - Important communication regarding the task must occur within the Freelance Bazar messaging system for record-keeping.')
+    p.drawString(90, y_position, f'  - Vazifa bo\'yicha muhim muloqotlar hujjatlar saqlash maqsadida Frilans Bazar xabarlash tizimida bo\'lishi kerak.')
     y_position -= 15
-    p.drawString(90, y_position, f'  - The assignment letter, progress updates, and final files related to the task should be shared and documented exclusively within the platform\'s internal communication channel.')
+    p.drawString(90, y_position, f'  - Vazifa bilan bog\'liq vazifani, rivojlanish yangilanishlarini va oxirgi fayllarni faqatgina platformaning ichki muloqot kanalida almashish va hujjatlash kerak.')
     y_position -= 15
-    p.drawString(90, y_position, f'  - External communication through other messengers is allowed but may not serve as proof of work or communication.')
+    p.drawString(90, y_position, f'  - Tashqi muloqotlar boshqa xabarlovchilar orqali amalga oshirilsa ham, bu ish yoki muloqotni isbotlash uchun xizmat qilmaydi.')
     y_position -= 25
 
-    # Prohibited Content
-    p.drawString(50, y_position, 'Prohibited Content:')
+    # Taqiqlangan Kontent
+    p.drawString(50, y_position, 'Taqiqlangan Kontent:')
     y_position -= 15
-    p.drawString(70, y_position, '8. Prohibited Content:')
+    p.drawString(70, y_position, '8. Taqiqlangan Kontent:')
     y_position -= 15
     p.drawString(90, y_position, '  - Both parties acknowledge that it is strictly prohibited to include content in the task that involves or promotes pornography, violence, hate speech, discrimination, illegal activities, politically biased content, or any material that violates the laws and regulations of the Republic of Uzbekistan or any relevant jurisdiction.')
     y_position -= 25
 
-    # Governing Law
-    p.drawString(50, y_position, 'Governing Law:')
+    # Hukumat Qonuni
+    p.drawString(50, y_position, 'Hukumat Qonuni:')
     y_position -= 15
-    p.drawString(70, y_position, '9. Governing Law:')
+    p.drawString(70, y_position, '9. Hukumat Qonuni:')
     y_position -= 15
-    p.drawString(90, y_position, '  - This Contract is governed by and construed in accordance with the laws of the Republic of Uzbekistan.')
+    p.drawString(90, y_position, '  - Ushbu Shartnoma O\'zbekiston Respublikasining qonunlariga muvofiq qayd etilgan va shariyat etilgan.')
     y_position -= 25
 
-    # Contact Information
-    p.drawString(50, y_position, 'Contact Information:')
+    # Aloqa Ma'lumotlari
+    p.drawString(50, y_position, 'Aloqa Ma\'lumotlari:')
     y_position -= 15
-    p.drawString(70, y_position, '10. Contact:')
+    p.drawString(70, y_position, '10. Aloqa:')
     y_position -= 15
-    p.drawString(90, y_position, f'  - For inquiries or concerns related to this Contract, contact aaaa@aaa.com.')
+    p.drawString(90, y_position, f'  - Ushbu Shartnomaga oid so\'rovnoma yoki muammoatlaringiz bo\'yicha aaaa@aaa.com ga murojaat qiling.')
     y_position -= 25
 
-    # Agreement
+    # Shartnoma
     y_position -= 15
-    p.drawString(50, y_position, 'Agreement:')
+    p.drawString(50, y_position, 'Shartnoma:')
     y_position -= 15
-    p.drawString(70, y_position, 'By accepting this task and entering into this Contract, both parties acknowledge that they have read, understood, and agree to abide by the terms outlined in this Task Contract. If there are any disagreements with any part of these terms, parties should communicate promptly.')
+    p.drawString(70, y_position, 'Ushbu vazifani qabul qilish va shartnoma qilish orqali, ikkala tomonda ushbu Vazifa Shartnomasida belgilangan shartlarni o\'qiganligini, tushunishini va unga rioya etishini tasdiqlashadi. Agar ushbu shartlarning istalgan qismiga muammo bo\'lsa, tomonlar tezroq muloqot qilishi kerak.')
     y_position -= 25
 
-    # Platform Information
-    p.drawString(50, y_position, 'Freelance Bazar')
+    # Platform Ma'lumotlari
+    p.drawString(50, y_position, 'Frilans Bazar')
     y_position -= 15
-    p.drawString(70, y_position, '[Address]')
+    p.drawString(70, y_position, '[Manzil]')
     y_position -= 15
-    p.drawString(70, y_position, '[Date]')
+    p.drawString(70, y_position, '[Sana]')
     y_position -= 25
 
     # # Signatures

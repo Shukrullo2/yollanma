@@ -4,9 +4,9 @@
 
 <form method="POST">
       {% csrf_token %}
-    <h2>Do you want to delete "{{project.title}}" project?</h2>
-    <a href="{% url 'projects' %}">Go Back</a>
-    <input type="submit" value="Confirm">
+    <h2> "{{project.title}}"ni o'chirishni xohlaysizmi?</h2>
+    <a href="{% url 'projects' %}">Ortga</a>
+    <input type="submit" value="O'chirish">
 </form>
 
 {% endblock content%}

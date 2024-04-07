@@ -3,10 +3,10 @@
 {% block content %}
 <!-- Main Section -->
   <main class="home">
-    <section class="hero-section text-center">
+    <section class="hero-section text-center" style="background-color: var(--color-bg)">
       <div class="container container--narrow">
         <div class="hero-section__box">
-          <h2>Search freelancers of <span>WIUT</span></h2>
+          <h2 style="color: var(--color-text)">Frilanserlar <span style="color: var(--color-text)"></span></h2>
 <!--          <h2>FROM AROUND THE WORLD</h2>-->
         </div>
 
@@ -17,11 +17,11 @@
 
 
               <input class="input input--text" id="formInput#search" type="text" name="search_query"
-               value="{{search_query}}" placeholder="Search" />
+               value="{{search_query}}" placeholder="Izlash" />
 
             </div>
 
-            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+            <input class="btn btn--sub btn--lg" type="submit" value="Izlash" />
           </form>
         </div>
       </div>
@@ -43,7 +43,7 @@
                   </div>
                 </div>
                 <p class="dev__info">
-                  {{profile.bio|slice:"150"}}
+                  {{profile.bio|slice:"150"}}...
                 </p>
                 <div class="dev__skills">
                   {% for skill in profile.skill_set.all|slice:"5" %}

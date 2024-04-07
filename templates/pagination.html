@@ -3,7 +3,7 @@
       <ul class="container">
 
         {% if queryset.has_previous%}
-        <li><a href="?page={{projects.previous_page_number}}" class="btn page-link ">&#10094; Prev</a></li>
+        <li><a href="?page={{projects.previous_page_number}}" class="btn page-link ">&#10094; Orqaga</a></li>
         {%endif%}
 
         {% for page in custom_range %}
@@ -14,7 +14,7 @@
         {%endif%}
         {% endfor %}
         {% if queryset.has_next%}
-        <li><a href="?page={{pl.next_page_number}}" class="btn page-link ">Next &#10095; </a></li>
+        <li><a href="?page={{pl.next_page_number}}" class="btn page-link ">Oldinga &#10095; </a></li>
         {%endif%}
       </ul>
     </div>

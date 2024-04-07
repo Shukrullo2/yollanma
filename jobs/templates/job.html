@@ -12,7 +12,7 @@
     <div class="container">
       <div class="layout">
         <div class="column column--1of3">
-          <h3 class="singleProject__subtitle">Tools & Stacks</h3>
+          <h3 class="singleProject__subtitle">Teglar</h3>
           <div class="singleProject__toolStack">
                 {% for tag in tags %}
               <span class="tag tag--pill tag--sub tag--lg">
@@ -22,11 +22,11 @@
 
           </div>
               {% if job.source_link %}
-          <a class="singleProject__liveLink" href="{{project.source.link}}" target="_blank"><i class="im im-external-link"></i>Source Code
+          <a class="singleProject__liveLink" href="{{project.source.link}}" target="_blank"><i class="im im-external-link"></i>Manba
           </a>
              {% endif %}
             {% if job.demo_link %}
-          <a class="singleProject__liveLink" href="{{project.demo_link}}" target="_blank"><i class="im im-external-link"></i>Live Demo
+          <a class="singleProject__liveLink" href="{{project.demo_link}}" target="_blank"><i class="im im-external-link"></i>Jonli Demo
           </a>
              {% endif %}
         </div>
@@ -35,21 +35,21 @@
           <img class="singleProject__preview" src="{% if job.featured_image %}{{job.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="portfolio thumbnail" />
           <a href="{% url 'user_profile' job.owner.id %}" class="singleProject__developer">{{job.owner.name}}</a>
           <h2 class="singleProject__title">{{job.title}}</h2>
-            <h3 class="singleProject__subtitle">Preferred Duration</h3>
+            <h3 class="singleProject__subtitle">Muddat</h3>
           <div class="singleProject__info">
-              {{job.duration}} days
+              {{job.duration}} kun
 
             <br />
 
           </div>
-            <h3 class="singleProject__subtitle">Allocated Budget</h3>
+            <h3 class="singleProject__subtitle">Ajratilgan Byudjet</h3>
           <div class="singleProject__info">
-              {{job.budget}} soums
+              {{job.budget}} so'm
 
             <br />
 
           </div>
-          <h3 class="singleProject__subtitle">Description</h3>
+          <h3 class="singleProject__subtitle">Tasnif</h3>
           <div class="singleProject__info">
               {{job.description}}
 
@@ -60,7 +60,7 @@
           <div class="comments">
 
             <h5 class="project--rating">
-                {{job.click_total}}  Clicks
+                {{job.click_total}}  Taklif
 
             </h5>
               {% if job.owner != request.user.profile and request.user.profile not in job.clicked.all and request.user.profile.user_type != 'company' %}
@@ -68,10 +68,10 @@
 
                 {%csrf_token%}
 
-                <input class="btn btn--sub btn--lg" type="submit" value="Click on the job" />
+                <input class="btn btn--sub btn--lg" type="submit" value="Taklif Jo'natish" />
             </form>
               {% elif request.user.profile in job.clicked.all %}
-              <h4>You have already clicked on this job</h4>
+              <h4>Bu vazifaga taklif berib bo'lgansiz</h4>
             {% endif %}
 
 <!--            </form>-->

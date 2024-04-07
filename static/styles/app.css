@@ -494,7 +494,7 @@ img {
   Projects Page
 ========================*/
 .projects > .hero-section {
-  background: #ffc404;
+  background: var(--color-bg);
   height: 30vh;
 }
 

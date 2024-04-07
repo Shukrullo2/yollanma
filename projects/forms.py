@@ -10,6 +10,14 @@ class ProjectForm(ModelForm):
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
+        labels = {
+            'title': 'Nom',
+            'description': 'Tasnif', 
+            'demo_link': 'Demo',
+            'source_link': 'Manba',
+            'tags': 'Teglar',
+            'featured_image': 'Surat'
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
@@ -30,7 +38,7 @@ class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = ['value', 'body']
-        labels = {'value': 'Place your vote', 'body':'Add a comment to your vote'}
+        labels = {'value': 'Ovoz bering', 'body':'Fikr bildiring...'}
 
     def __init__(self, *args, **kwargs):
         super(ReviewForm, self).__init__(*args, **kwargs)

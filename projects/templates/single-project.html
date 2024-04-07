@@ -12,7 +12,7 @@
     <div class="container">
       <div class="layout">
         <div class="column column--1of3">
-          <h3 class="singleProject__subtitle">Tools & Stacks</h3>
+          <h3 class="singleProject__subtitle">Teglar</h3>
           <div class="singleProject__toolStack">
                 {% for tag in tags %}
               <span class="tag tag--pill tag--sub tag--lg">
@@ -22,11 +22,11 @@
 
           </div>
               {% if project.source_link %}
-          <a class="singleProject__liveLink" href="{{project.source.link}}" target="_blank"><i class="im im-external-link"></i>Source Code
+          <a class="singleProject__liveLink" href="{{project.source.link}}" target="_blank"><i class="im im-external-link"></i>Manba
           </a>
              {% endif %}
             {% if project.demo_link %}
-          <a class="singleProject__liveLink" href="{{project.demo_link}}" target="_blank"><i class="im im-external-link"></i>Live Demo
+          <a class="singleProject__liveLink" href="{{project.demo_link}}" target="_blank"><i class="im im-external-link"></i>Jonli Demo
           </a>
              {% endif %}
         </div>
@@ -35,7 +35,7 @@
           <img class="singleProject__preview" src="{% if project.featured_image %}{{project.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="portfolio thumbnail" />
           <a href="{% url 'user_profile' project.owner.id %}" class="singleProject__developer">{{project.owner.name}}</a>
           <h2 class="singleProject__title">{{project.title}}</h2>
-          <h3 class="singleProject__subtitle">About the Project</h3>
+          <h3 class="singleProject__subtitle">Loyiha Haqida</h3>
           <div class="singleProject__info">
               {{project.description}}
 
@@ -44,27 +44,27 @@
           </div>
 
           <div class="comments">
-            <h3 class="singleProject__subtitle">Feedback</h3>
+            <h3 class="singleProject__subtitle">Fikrlar</h3>
             <h5 class="project--rating">
-                {{project.vote_ratio}}% Positive Feedback
+                {{project.vote_ratio}}% Ijobiy Izohlar 
                 {% if project.vote_total == 1 %}
-                      (1 Vote)
+                      (1 Izoh)
                       {% elif project.vote_total == 0 %}
-                      (No Votes)
+                      (Izohlarsiz)
                       {% else %}
-                      ({{project.vote_total}} Votes)
+                      ({{project.vote_total}} Izohlar)
                       {%endif%}
             </h5>
 
 
             {% if request.user.profile.id in project.reviewers %}
               <p>
-                  You have already submitted your review
+                  Bu loyihaga fikr bildirgansiz
               </p>
 
               {% elif request.user.profile == project.owner %}
               <p>
-                  You cannot review your own work
+                  O'z loyihangizga fikr bildira olmaysiz
               </p>
 
               {% elif request.user.is_authenticated %}
@@ -80,7 +80,7 @@
                 {%endfor%}
                 <input class="btn btn--sub btn--lg" type="submit" value="Comments" />
                 {% else %}
-                <a href="{% url 'login' %}?next={{request.path}}" > Please login to leave a review</a>
+                <a href="{% url 'login' %}?next={{request.path}}" > Fikr bilidirish uchun tizimga kiring</a>
 
 
             </form>

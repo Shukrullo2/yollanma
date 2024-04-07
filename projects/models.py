@@ -52,7 +52,7 @@ class Project(models.Model):
 class Review(models.Model):
     # owner
     VOICE_TYPE = (
-        ('up', 'Upvote'), ('down', 'Downvote')
+        ('up', 'Ijobiy'), ('down', 'Salbiy')
     )
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)

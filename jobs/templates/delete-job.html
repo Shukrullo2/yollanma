@@ -5,9 +5,9 @@
             <div class="formWrapper">
                 <form method="POST">
       {% csrf_token %}
-    <h2>Do you want to delete {{job.title}}?</h2>
-    <a href="{% url 'account' %}">Go Back</a>
-    <input type="submit" value="Confirm">
+    <h2> {{job.title}} ni o'chirib yuborishni xohlaysizmi?</h2>
+    <a href="{% url 'account' %}">Qaytish</a>
+    <input type="submit" value="O'chirish">
 </form>
             </div>
         </div>

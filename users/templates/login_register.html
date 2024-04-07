@@ -11,8 +11,8 @@
           <a href="/">
             <img src="{% static 'images/icon.svg' %}" alt="icon" />
           </a>
-          <h3>Account SignUp</h3>
-          <p>Create a new developer account</p>
+          <h3>Ro'yxatdan O'tish</h3>
+          <p>Yangi akkaunt yarating</p>
         </div>
         <form method="POST" action="{% url 'register'%}" class="form auth__form">
           {% csrf_token %}
@@ -31,17 +31,25 @@
           </div>
           {% endfor %}
           {{checkboxform.as_p}}
-          <div class="auth__actions">
-            <input class="btn btn--sub btn--lg" type="submit" value="Sign Up" />
-          </div>
-          <p class='color: red;'>
+         
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="user_agreement" name="user_agreement">
+            <label class="form-check-label" for="user_agreement">Yollanma platformasining
+              <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Buyurtmachilar</a> va <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Frilanserlar</a> uchun 
+              tuzilgan "Foydalanish Shartnomasiga" roziman.
+            </label>
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" id='submit-btn' type="submit" value="Oldinga" disabled/>
+        </div>
+          {% comment %} <p class='color: red;'>
             By creating the user account you agree and sign "Freelance Bazar's User Agreement" for 
             <a href="{%url "user-agreement" 'Client' %}"  target="_blank">Clients</a> and <a href="{%url "user-agreement" 'Freelance'%}"  target="_blank">Freelancers</a>
-          </p>  
+          </p>   {% endcomment %}
         </form>
         <div class="auth__alternative">
-          <p>Already have an Account?</p>
-          <a href="{% url 'login'%}">Log In</a>
+          <p>Akkauntingiz bormi?</p>
+          <a href="{% url 'login'%}">Kirish</a>
         </div>
        
       </div>
@@ -57,27 +65,27 @@
           <a href="/">
             <img src="{% static 'images/icon.svg' %}" alt="icon" />
           </a>
-          <h3>Account Login</h3>
-          <p>Hello Developer, Welcome Back!</p>
+          <h3>Tizimga Kirish</h3>
+          <p>"Yollanma.uz"ga xush kelibsiz</p>
         </div>
 
         <form action="" method="POST" class="form auth__form">
           <!-- Input:Username -->
             {% csrf_token %}
           <div class="form__field">
-            <label for="formInput#text">Username: </label>
+            <label for="formInput#text">Foydalanuvchi nomi: </label>
             <input
               class="input input--text"
               id="formInput#text"
               type="text"
               name="username"
-              placeholder="Enter your username..."
+              placeholder="Kiriting..."
             />
           </div>
 
           <!-- Input:Password -->
           <div class="form__field">
-            <label for="formInput#password">Password: </label>
+            <label for="formInput#password">Parol: </label>
             <input
               class="input input--password"
               id="formInput#passowrd"
@@ -88,16 +96,22 @@
           </div>
           <div class="auth__actions">
             <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
-            <a href="{% url 'reset_password'%}">Forget Password?</a>
+            <a href="{% url 'reset_password'%}">Parolni Unutdingizmi</a>
           </div>
         </form>
         <div class="auth__alternative">
-          <p>Don’t have an Account?</p>
-          <a href="{% url 'register'%} ">Sign Up</a>
+          <p>Akkauntingiz yo'qmi?</p>
+          <a href="{% url 'register'%} ">Ro'yxatdan o'ting</a>
         </div>
       </div>
     </div>
 
 {% endif %}
+
+<script>
+  document.getElementById('user_agreement').addEventListener('change', function() {
+    document.getElementById('submit-btn').disabled = !this.checked;});
+</script>
+
 
 {% endblock content %}

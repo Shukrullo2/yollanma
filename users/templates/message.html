@@ -23,7 +23,7 @@
                         {{form.attached}}
                     </div>
 
-                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Reply" />
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Jo'natish" />
       </form>
 
       {%for message in messageRequest%}
@@ -38,7 +38,7 @@
             </div>
             
           {% if message.attached %}
-          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
+          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Faylni Yuklash</a>
           {% endif %}
         </div>
       <br>
@@ -51,7 +51,7 @@
             {{message.body|safe|linebreaksbr}}
           </div>
               {% if message.attached %}
-          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Download Attachment</a>
+          <a href="{{ message.attached.url }}" download="{{ message.attached.name }}">Faylni Yuklash</a>
           {% endif %}
             </div>
       <br>

@@ -22,7 +22,7 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     username = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    email = models.EmailField(max_length=200, blank=True, null=True, unique=True)
+    email = models.EmailField(max_length=200, blank=True, null=True, unique=False)
     name = models.CharField(max_length=200, blank=True, null=True)
     short_intro = models.CharField(max_length=500, blank=True, null=True)
     profile_pic = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/default.jpg')

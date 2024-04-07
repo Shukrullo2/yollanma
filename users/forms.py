@@ -12,7 +12,10 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['first_name','username', 'password1', 'password2']
         labels = {
-            'first_name': 'Name',
+            'first_name': 'Ism',
+            'username': 'Foydalanuvchi nomi',
+            'password1': 'Parol',
+            'password2': 'Parolni qayta kiriting'
         }
 
     def __init__(self, *args, **kwargs):
@@ -29,12 +32,16 @@ class ProfileForm(ModelForm):
                   'social_website', 'user_type'
                   ]
         labels = {
-            'first_name': 'Name',
-            'social_linkedin': 'Link to LinkedIn Profile',
-            'social_instagram': 'Link to Instagram Profile',
-            'social_telegram': 'Link to Telegram Profile',
-            'social_github': 'Link to GitHub Profile',
-            'social_website': 'Link to Website',
+            'name': 'Ism',
+            'username': 'Foydalanuvchi nomi',
+            'location': 'Manzil',
+            'short_intro': 'Qisqa bio',
+            'user_type': 'Foydalanuvchi turi',
+            'social_linkedin': 'LinkedIn Sahifasiga Havola',
+            'social_instagram': 'Instagram Sahifasiga Havola',
+            'social_telegram': 'Telegram Sahifasiga Havola',
+            'social_github': 'GitHub Sahifasiga Havola',
+            'social_website': 'Vebsaytga havola',
         }
     order = ['name', 'email', 'username', 'user_type', 'location', 'bio', 'short_intro', 'profile_pic',
                   'social_github', 'social_instagram', 'social_linkedin', 'social_telegram',
@@ -73,6 +80,7 @@ class CustomProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = {'user_type'}
+        
 
     def __init__(self, *args, **kwargs):
         super(CustomProfileForm, self).__init__(*args, **kwargs)
@@ -84,6 +92,10 @@ class SkillForm(ModelForm):
     class Meta:
         model = Skill
         fields = {'description', 'name'}
+        labels = {
+            'description': 'Tasnif',
+            'name': 'Nom'
+        }
 
     def __init__(self, *args, **kwargs):
         super(SkillForm, self).__init__(*args, **kwargs)
@@ -95,6 +107,12 @@ class MessageForm(ModelForm):
     class Meta:
         model = Message
         fields = {'email', 'subject', 'body', 'attached'}
+        labels = {
+            'subject': 'Mavzu', 
+            'body': 'Matn',
+            'attached': 'Fayl'
+            
+        }
 
     def __init__(self, *args, **kwargs):
         super(MessageForm, self).__init__(*args, **kwargs)
@@ -102,8 +120,8 @@ class MessageForm(ModelForm):
             field.widget.attrs.update({'class': 'input'})
 
 class CheckboxForm(forms.Form):
-    type_freelancer = forms.BooleanField(required=False, initial=False, label='I am a Freelancer')
-    type_client = forms.BooleanField(required=False, initial=False, label='I am a Client')
+    type_freelancer = forms.BooleanField(required=False, initial=False, label='Men frilanserman')
+    type_client = forms.BooleanField(required=False, initial=False, label='Menga frilanserlar kerak')
     def clean(self):
         cleaned_data = super().clean()
         checkbox1 = cleaned_data.get('checkbox1')

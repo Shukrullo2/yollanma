@@ -11,7 +11,7 @@
     <section class="hero-section text-center">
       <div class="container container--narrow">
         <div class="hero-section__box">
-          <h2>Search <span>Projects</span></h2>
+          <h2>Loyihalar <span></span></h2>
         </div>
 
         <div class="hero-section__search">
@@ -19,10 +19,10 @@
             <div class="form__field">
               <label for="formInput#search">Proyekt bo'yicha qidirish </label>
               <input class="input input--text" id="formInput#search" type="text" name="search_query"
-                placeholder="Search" value="{{search_query}}" />
+                placeholder="Izlash" value="{{search_query}}" />
             </div>
 
-            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+            <input class="btn btn--sub btn--lg" type="submit" value="Izlash" />
           </form>
         </div>
       </div>
@@ -44,15 +44,15 @@
                 <img class="project__thumbnail" src="{% if item.featured_image %}{{item.featured_image.url}}{%else%}{% static 'images/default.jpg' %}{%endif%}" alt="project thumbnail" />
                 <div class="card__body">
                   <h3 class="project__title">{{item.title}}</h3>
-                  <p><a class="project__author" href="{% url 'user_profile' item.owner.id %}">By {{item.owner.name}}</a></p>
+                  <p><a class="project__author" href="{% url 'user_profile' item.owner.id %}">{{item.owner.name}} dan</a></p>
                   <p class="project--rating">
-                    <span style="font-weight: bold;">{{item.vote_ratio}}%</span> Positive
-                    Feedback {% if item.vote_total == 1 %}
-                      (1 Vote)
+                    <span style="font-weight: bold;">{{item.vote_ratio}}%</span> Ijobiy
+                    Izohlar {% if item.vote_total == 1 %}
+                      (1 Izoh)
                       {% elif item.vote_total == 0 %}
-                      (No Votes)
+                      (Izohlar yo'q)
                       {% else %}
-                      ({{item.vote_total}} Votes)
+                      ({{item.vote_total}} Izohlar)
                       {%endif%}
 
                   </p>

@@ -11,25 +11,25 @@
           <div class="toggle-menu__lines"></div>
         </label>
         <ul class="header__menu">
-          <li class="header__menuItem"><a href="{% url 'profiles' %}">Freelancers</a></li>
-            <li class="header__menuItem"><a href="{% url 'companies' %}">Client</a></li>
-          <li class="header__menuItem"><a href="{% url 'projects' %}">Projects</a></li>
-          <li class="header__menuItem"><a href="{% url 'jobs' %}">Tasks</a></li>
+          <li class="header__menuItem"><a href="{% url 'profiles' %}">Frilanserlar</a></li>
+            <li class="header__menuItem"><a href="{% url 'companies' %}">Buyurtmachilar</a></li>
+          <li class="header__menuItem"><a href="{% url 'projects' %}">Loyihalar</a></li>
+          <li class="header__menuItem"><a href="{% url 'jobs' %}">Vazifalar</a></li>
 
 
           {% if request.user.is_authenticated %}
-          <li class="header__menuItem"><a href="{%url 'inbox'%}">Inbox</a></li>
-          <li class="header__menuItem"><a href="{% url 'account' %}">Edit Account</a></li>
+          <li class="header__menuItem"><a href="{%url 'inbox'%}">Chat</a></li>
+          <li class="header__menuItem"><a href="{% url 'account' %}">Akkaunt</a></li>
 
 
-         {% if request.user.profile.user_type == 'company' %} <li class="header__menuItem"><a href="{%url 'create-job'%}">Create Job</a></li>
+         {% comment %} {% if request.user.profile.user_type == 'company' %} <li class="header__menuItem"><a href="{%url 'create-job'%}">Create Job</a></li>
             {%else%}
-            <li class="header__menuItem"><a href="{% url 'create-project' %}" >Create Project</a></li>
-            {% endif %}
-          <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn" >Logout</a></li>
+            <li class="header__menuItem"><a href="{% url 'create-project' %}" >Create Project</a></li> 
+            {% endif %} {% endcomment %}
+          <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn" >Chiqish</a></li>
 
           {% else %}
-          <li class="header__menuItem"><a href="{% url 'login' %}" class="btn" >Login/Sign Up</a></li>
+          <li class="header__menuItem"><a href="{% url 'login' %}" class="btn" >Kirish</a></li>
           {% endif %}
         </ul>
       </nav>

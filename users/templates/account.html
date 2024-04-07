@@ -12,7 +12,7 @@
         <div class="column column--1of3">
           <div class="card text-center">
             <div class="card__body dev">
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="im im-edit"></i> Edit</a>
+              <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="im im-edit"></i> Tahrir</a>
               <img class="avatar avatar--xl dev__avatar" src="{% if profile.profile_pic %}{{profile.profile_pic.url}} {%else%} {% static 'images/profiles/default.jpg' %}{%endif%}" />
               <h2 class="dev__name">{{profile.name}}</h2>
               <p class="dev__title">{{profile.short_intro}}</p>
@@ -53,7 +53,7 @@
         <div class="column column--2of3">
           
           <div class="devInfo">
-            <h3 class="devInfo__title">About</h3>
+            <h3 class="devInfo__title">Men haqimda</h3>
             <p class="devInfo__about">
               {{profile.bio}}
             </p>
@@ -63,8 +63,8 @@
 
           {% if profile.user_type == 'Freelance' %}
           <div class="settings">
-            <h3 class="settings__title">Skills</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}"><i class="im im-plus"></i> Add Skill</a>
+            <h3 class="settings__title">Mahoratlar</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-skill' %}"><i class="im im-plus"></i> Qo'shish</a>
           </div>
           <table class="settings__table">
             {% for skill in skills %}
@@ -77,9 +77,9 @@
                 </p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-skill' skill.id %}"><i class="im im-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-skill' skill.id %}"><i class="im im-edit"></i> Tahrir</a>
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}"><i class="im im-x-mark-circle-o"></i>
-                  Delete</a>
+                  O'chirish</a>
               </td>
             </tr>
             {% endfor %}
@@ -89,8 +89,8 @@
           {% if profile.user_type == 'Client'%}
           
           <div class="settings">
-            <h3 class="settings__title">Tasks</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-job' %}"><i class="im im-plus"></i> Add Task</a>
+            <h3 class="settings__title">Vazifalar</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-job' %}"><i class="im im-plus"></i> Qo'shish</a>
           </div>
 
           <table class="settings__table">
@@ -105,7 +105,7 @@
               <td class="settings__tableInfo">
                 <a href="{% url 'job' job.id%}">{{job.title}}</a>
                 {% if job.is_assigned %}
-                <p> <b>This task is assigned to<b> <a href="{% url 'user_profile' job.assigned.id%}">{{job.assigned.name}}</a></p>
+                <p> <b>Bu topshiriq<b> <a href="{% url 'user_profile' job.assigned.id%}">{{job.assigned.name}}</a> <b> ga berilgan<b> </p>
                 {% endif %}
                 <p>
                   {{job.description|slice:"150"}}
@@ -113,18 +113,18 @@
               </td>
 
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-job' job.id %}"><i class="im im-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-job' job.id %}"><i class="im im-x-mark-circle-o"></i>Delete</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-job' job.id %}"><i class="im im-edit"></i> Tahrir</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-job' job.id %}"><i class="im im-x-mark-circle-o"></i>O'chirish</a>
                   {% if job.is_active%}
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'change-status' job.id %}"><i class="im im-x-mark-circle-o"></i>
-                  Deactivate</a>
+                  Yashirish</a>
                   {%else%}
                    <a class="tag tag--pill tag--main settings__btn" href="{% url 'change-status' job.id %}"><i class="im im-x-mark-circle-o"></i>
-                  Activate</a>
+                  Tiklash</a>
                   {%endif%}
 
                   {% if not job.assigned and job.is_active %}
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'clicks' job.id %}"><i class="im im-x-mark-circle-o"></i>Clicks </a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'clicks' job.id %}"><i class="im im-x-mark-circle-o"></i>Takliflar </a>
                     {% endif %}
 
               </td>
@@ -139,8 +139,8 @@
     {% else %}
 
           <div class="settings">
-            <h3 class="settings__title">Projects</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="im im-plus"></i> Add Project</a>
+            <h3 class="settings__title">Loyihalar</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="im im-plus"></i> Qo'shish</a>
           </div>
 
           <table class="settings__table">
@@ -156,9 +156,9 @@
                 </p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i class="im im-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i class="im im-edit"></i> Tahrir</a>
                 <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-project' project.id %}"><i class="im im-x-mark-circle-o"></i>
-                  Delete</a>
+                  O'chirish</a>
               </td>
             </tr>
             {% endfor %}
@@ -172,8 +172,8 @@
             </table>
           {% if assigned_job%}
           <div class="settings">
-            <h3 class="settings__title">Assigned Tasks</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="im im-plus"></i> Add Project</a>
+            <h3 class="settings__title">Olingan Vazifalar</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="im im-plus"></i> Qo'shish</a>
           </div>
 
           <table class="settings__table">

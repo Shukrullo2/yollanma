@@ -18,66 +18,68 @@
 
 <!--      </ul>-->
 <!--    </div>-->
-    <br>
-    <div class="content-box">
-      <h3 class="inbox__title"> Contract Details</span> </h3>
-      <ul class="messages">
-        <h1>Contract Details</h1>
-        <p>Task ID: {{ contract.job.id }}</p>
-        <p>Task Name: {{ contract.job.title }}</p>
-        <p>Task Description: {{ contract.job.description }}</p>
-      
-        <!-- Add more fields as needed -->
-      
-        <h4>Parties:</h4>
-        <h5>Client:</h5>
-        <ul>
-          <li>Username: {{ contract.client.username }}</li>
-          <li>Full Name: {{ contract.client.full_name }}</li>
-        </ul>
-      
-        <h5>Freelancer:</h5>
-        <ul>
-          <li>Username: {{ contract.freelancer.username }}</li>
-          <li>Full Name: {{ contract.freelancer.full_name }}</li>
-        </ul>
-      
-        <h4>Contract Terms:</h4>
-        <p>The agreed-upon price for the task is {{ contract.job.budget }}.</p>
-        <p>The duration for completing the task is {{ contract.job.duration }}.</p>
-      
-        <!-- Add more fields as needed -->
-      
-        <h4>Contractual Agreements:</h4>
-        <p>Scope of Work: {{ contract.job.description }}</p>
-        <p>Payment and Settlement: {{ contract.payment_details }}</p>
-      
-        <!-- Add more fields as needed -->
-      
-        <h4>Prohibited Content:</h4>
-        <p>Both parties acknowledge that it is strictly prohibited to include content in the task that involves or promotes...</p>
-      
-        <!-- Add more sections as needed -->
-      
-        <h4>Governing Law:</h4>
-        <p>This Contract is governed by and construed in accordance with the laws of {{ contract.governing_law }}.</p>
-      
-        <!-- Add more sections as needed -->
-      
-        <h4>Contact Information:</h4>
-        <p>For inquiries or concerns related to this Contract, contact {{ contract.contact_email }}.</p>
-      
-        <h4>Agreement:</h4>
-        <p>By accepting this task and entering into this Contract, both parties acknowledge that they have read, understood, and agree...</p>
-      
-        <h4>Freelance Bazar</h4>
-        <p>[Address]</p>
-        <p>[Date]</p>
-      
-        <h4>Signatures:</h4>
-        <p>Client's Signature: __________________________</p>
-        <p>Freelancer's Signature: _______________________</p>
-      </ul>
+<br>
+<div class="content-box">
+  <h3 class="inbox__title"> Shartnoma Tafsilotlari: </h3>
+  <ul class="messages">
+    <h1>Shartnoma Ma'lumotlari</h1>
+    <p>Vazifa ID: {{ contract.job.id }}</p>
+    <p>Vazifa Nomi: {{ contract.job.title }}</p>
+    <p>Vazifa Tavsifi: {{ contract.job.description }}</p>
+  
+    <!-- Kerak bo'lsa, qo'shimcha maydonlarni qo'shing -->
+  
+    <h4>Taraf-lar:</h4>
+    <h5>Mijoz:</h5>
+    <ul>
+      <li>Foydalanuvchi nomi: {{ contract.client.username }}</li>
+      <li>To'liq Ismi: {{ contract.client.full_name }}</li>
+    </ul>
+  
+    <h5>Frilanser:</h5>
+    <ul>
+      <li>Foydalanuvchi nomi: {{ contract.freelancer.username }}</li>
+      <li>To'liq Ismi: {{ contract.freelancer.full_name }}</li>
+    </ul>
+  
+    <h4>Shartnoma Shartlari:</h4>
+    <p>Vazifa uchun kelgan narx {{ contract.job.budget }}.</p>
+    <p>Vazifani bajarish muddati {{ contract.job.duration }}.</p>
+  
+    <!-- Kerak bo'lsa, qo'shimcha maydonlarni qo'shing -->
+  
+    <h4>Shartnoma Shartlari:</h4>
+    <p>Ishning miqyosi: {{ contract.job.description }}</p>
+    <p>To'lov va Hisob-kitob: {{ contract.payment_details }}</p>
+  
+    <!-- Kerak bo'lsa, qo'shimcha maydonlarni qo'shing -->
+  
+    <h4>Taqiqlangan Kontent:</h4>
+    <p>Ikkala taraf taqiqlangan kontentni vazifaga qo'shish yoki uning reklamasi bo'lganini yoki quyidagi narsalarni shug'ullanishni qat'iy man etishadi...</p>
+  
+    <!-- Kerak bo'lsa, qo'shimcha bo'limlarni qo'shing -->
+  
+    <h4>Hukumat Qonuni:</h4>
+    <p>Ushbu Shartnoma O'zbekiston Respublikasining {{ contract.governing_law }} qonunlariga muvofiq qayd etilgan va shariyat etilgan.</p>
+  
+    <!-- Kerak bo'lsa, qo'shimcha bo'limlarni qo'shing -->
+  
+    <h4>Aloqa Ma'lumotlari:</h4>
+    <p>Ushbu Shartnomaga oid savollaringiz yoki tashvishingiz bo'lsa,  {{ contract.contact_email }} ga murojaat qiling.</p>
+  
+    <h4>Shartnoma:</h4>
+    <p>Ushbu vazifani qabul qilish va shartnoma qilish orqali, ikkala tomonda ushbu Vazifa Shartnomasida belgilangan shartlarni o'qiganligini, tushunishini va unga rioya etishini tasdiqlashadi...</p>
+  
+    <h4>Frilans Bazar</h4>
+    <p>[Manzil]</p>
+    <p>[Sana]</p>
+  
+    <h4>Imzolar:</h4>
+    <p>Mijozning Imzosi: __________________________</p>
+    <p>Frilanserning Imzosi: _______________________</p>
+  </ul>
+</div>
+
       <form method="POST"> 
         {% csrf_token %}
       

@@ -8,8 +8,13 @@ class JobForm(ModelForm):
         model = Job
         fields = ['title', 'featured_image', 'description', 'tags', 'budget', 'duration']
         labels = {
-            'budget': 'Budget in soums',
-            'duration': 'Duration in days'
+             'title': 'Nom',
+            'budget': 'Byudjet (so`mda)',
+            'duration': 'Muddat (kunlarda)',
+            'description': "Tasnif",
+            'featured_image': 'Surat',
+            'tags': 'Teglar',
+
         }
 
     def __init__(self, *args, **kwargs):
@@ -31,8 +36,10 @@ class ContractForm(ModelForm):
         model = Contract
         fields = ['title', 'budget', 'duration', 'description', ]
         labels = {
-            'budget': 'Budget in soums',
-            'duration': 'Duration in days'
+            'title': 'Nom',
+            'budget': 'Byudjet (so`mda)',
+            'duration': 'Muddat (kunlarda)',
+            'description': "Tasnif"
         }
     def __init__(self, *args, **kwargs):
         super(ContractForm, self).__init__(*args, **kwargs)

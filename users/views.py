@@ -60,6 +60,7 @@ def registerUser(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
+            print(user.email)
             user.save()
             user.is_active=False
             messages.success(request, 'User account is created')

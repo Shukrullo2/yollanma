@@ -1,16 +1,17 @@
 :root {
-  --color-main: #5aa5b9;
-  --color-main-light: #e6faff;
-  --color-sub: #101c34;
-  --color-sub-light: #233560;
-  --color-sub-lighter: #ededfd;
-  --color-text: #737373;
-  --color-gray: #8b8b8b;
-  --color-light: #e5e7eb;
-  --color-light-gray: #767676;
-  --color-bg: #f8fafd;
-  --color-white: #fffefd;
-  --color-white-light: #f3f3f3;
+  --color-main: #2d6a4f;         /* Dark Green */
+  --color-main-light: #7eccab;   /* Light Green */
+  --color-sub: #2d6a4ff;          /* Peach */
+  --color-sub-light: #db671f;    /* Darker Peach */
+  --color-sub-lighter: #f6b389;  /* Light Peach */
+  --color-button: #283593;       /* Deep Navy Blue (Button Color) */
+  --color-text: #4a4a4a;         /* Dark Gray */
+  --color-gray: #8c8c8c;         /* Gray */
+  --color-light: #f2f2f2;        /* Light Gray */
+  --color-light-gray: #d9d9d9;   /* Lighter Gray */
+  --color-bg: #ffffff;           /* White */
+  --color-white: #ffffff;        /* White */
+  --color-white-light: #fafafa;  /* Lighter White */
   --color-success: #359e64;
   --color-success-bg: #def8e8;
   --color-error: #fc4b0b;

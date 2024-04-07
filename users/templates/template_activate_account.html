@@ -1,6 +1,6 @@
 {% autoescape off %}
-Hi {{user }},
+Salom {{user }},
 
-Please click on the link below to confirm your registration:
+Akkauntingizni tasdiqlash uchun quyidagi havolaga o'ting 
 http://{{domain}}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}
