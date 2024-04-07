@@ -180,10 +180,4 @@ django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
-# AWS_S3_ACCESS_KEY_ID = 'AKIA2T4TZVEZHRZBT57K'
-# AWS_S3_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'fbazar'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_QUERYSTRING_AUTH = False
+
